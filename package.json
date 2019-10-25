@@ -29,7 +29,8 @@
     "url": "git+https://github.com/lipemat/use-immer-reactn.git"
   },
   "scripts": {
-    "build": "microbundle"
+    "build": "microbundle",
+    "prepublish": "rm -rf dist/* && yarn run build"
   },
   "peerDependencies": {
     "immer": "*",
