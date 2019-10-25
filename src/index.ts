@@ -20,17 +20,24 @@ export function useGlobalImmer( property ) {
 	}, [ property, updateValue ] ) ];
 }
 
+// Use entire Global State
+export function setGlobalImmer( updater: ( draft: Draft<State> ) => void | State ): Promise<State>;
 // Use property of Global State
 export function setGlobalImmer<S extends keyof State>( property: S, updater: ( draft: Draft<State[S]> ) => void | State[S] ): Promise<State[S]>;
 
 /**
  * Set Global State with Immer.
  *
- * @param {string} property
- * @param {Function} updater
+ * @param {string|Function} propertyOrProducer - If a function is passed, we are working with entire
+ * global state and this argument is used as the producer.
+ * @param {Function|undefined} [producer] - If a property is passed as the first parameter,
+ *                                          this argument is the producer
  */
-export function setGlobalImmer( property, updater ) {
-	return setGlobal( {
-		[ property ]: produce( getGlobal()[ property ], updater )
-	} );
+export function setGlobalImmer( propertyOrProducer, producer? ) {
+	if ( producer as Function ) {
+		return setGlobal( {
+			[ propertyOrProducer ]: produce( getGlobal()[ propertyOrProducer ], producer )
+		} );
+	}
+	return setGlobal( produce( getGlobal(), propertyOrProducer ) );
 }
