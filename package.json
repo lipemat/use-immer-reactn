@@ -1,7 +1,7 @@
 {
   "name": "use-immer-reactn",
-  "version": "0.0.1-beta",
-  "description": "React hooks for using Immer with ReactN",
+  "version": "1.0.0",
+  "description": "React hook and helper function for using Immer with ReactN",
   "author": "Mat Lipe",
   "license": "MIT",
   "main": "dist/use-immer-reactn.js",
