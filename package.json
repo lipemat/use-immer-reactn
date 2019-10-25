@@ -1,0 +1,48 @@
+{
+  "name": "use-immer-reactn",
+  "version": "0.0.1",
+  "description": "React hooks for using Immer with ReactN",
+  "author": "Mat Lipe",
+  "license": "MIT",
+  "main": "dist/use-immer-reactn.js",
+  "umd:main": "dist/use-immer-reactn.umd.js",
+  "module": "dist/use-immer-reactn.module.js",
+  "jsnext:main": "dist/use-immer-reactn.module.js",
+  "react-native": "dist/use-immer-reactn.module.js",
+  "typings": "dist/index.d.ts",
+  "source": "src/index.ts",
+  "files": [
+    "dist/"
+  ],
+  "keywords": [
+    "immer",
+    "hooks",
+    "react",
+    "reactn"
+  ],
+  "bugs": {
+    "url": "https://github.com/lipemat/use-immer-reactn/issues"
+  },
+  "homepage": "https://github.com/lipemat/use-immer-reactn#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lipemat/use-immer-reactn.git"
+  },
+  "scripts": {
+    "build": "microbundle"
+  },
+  "dependencies": {
+    "immer": "^3.2.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "reactn": "*"
+  },
+  "devDependencies": {
+    "@types/react": "^16.8.13",
+    "microbundle": "^0.11.0",
+    "react": "^16.11.0",
+    "reactn": "^2.2.4",
+    "typescript": "^3.4.3"
+  }
+}
