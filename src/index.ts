@@ -4,7 +4,7 @@ import {getGlobal, setGlobal, useGlobal} from 'reactn';
 import {State} from 'reactn/default';
 
 // Use property of Global State
-export function useImmerGlobal<S extends keyof State>( property: S ):
+export function useGlobalImmer<S extends keyof State>( property: S ):
 	[ State[S], ( f: ( draft: Draft<State[S]> ) => void | State[S] ) => void ];
 
 /**
@@ -12,7 +12,7 @@ export function useImmerGlobal<S extends keyof State>( property: S ):
  *
  * @param {string} property
  */
-export function useImmerGlobal( property ) {
+export function useGlobalImmer( property ) {
 	const [ val, updateValue ] = useGlobal( property );
 
 	return [ val, useCallback( updater => {
