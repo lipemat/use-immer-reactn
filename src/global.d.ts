@@ -10,5 +10,6 @@ declare module 'reactn/default' {
 	export interface State {
 		example: string;
 		keys: number;
+		messages: object;
 	}
 }
