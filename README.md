@@ -113,7 +113,7 @@ setGlobalImmer( 'title', original => {
 
 Use Immer ReactN supports TypeScript out of the box! It is written entirely in TypeScript. This gives it powerful intellisense, auto-complete, and error-catching abilities.
 
-While there is not configuration required to use this package, there is one caveat passed down from [ReactN](https://www.npmjs.com/package/reactn) which requires you to setup a `src/global.d.ts` file to tell TypeScript the shape fo your global state.
+While there is not configuration required to use this package, there is one caveat passed down from [ReactN](https://www.npmjs.com/package/reactn) which requires you to setup a `src/global.d.ts` file to tell TypeScript the shape of your global state.
 
 If you are already using TypeScript with ReactN, odds are good you have already gone through the [steps outlined here](https://www.npmjs.com/package/reactn#typescript-support). If not, you'll likely want to do so.
 
