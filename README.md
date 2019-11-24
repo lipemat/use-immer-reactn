@@ -9,7 +9,7 @@
 
 ## Install
 
-* `npm install reactn` or
+* `npm install use-immer-reactn` or
 * `yarn add use-immer-reactn`
 
 ## Usage
