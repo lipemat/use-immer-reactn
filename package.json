@@ -1,6 +1,6 @@
 {
   "name": "use-immer-reactn",
-  "version": "1.1.0
+  "version": "1.1.1",
   "description": "React hook and helper function for using Immer with ReactN",
   "author": "Mat Lipe",
   "license": "MIT",
@@ -34,7 +34,7 @@
   },
   "peerDependencies": {
     "immer": "*",
-    "react": "^16.8.0",
+    "react": "^16.8.0"
   },
   "dependencies": {
      "reactn": "^2.2.4"
