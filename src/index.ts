@@ -3,9 +3,12 @@ import {useCallback} from 'react';
 import {getGlobal, setGlobal, useGlobal} from 'reactn';
 import {State} from 'reactn/default';
 
-// Use property of Global State
-export function useGlobalImmer<S extends keyof State>( property: S ):
-	[ State[S], ( f: ( draft: Draft<State[S]> ) => void | State[S] ) => void ];
+// Use property of Global State.
+export function useGlobalImmer<P extends keyof State>( property: P ):
+	[ State[P], ( f: ( draft: Draft<State[P]> ) => void | State[P] ) => void ];
+// Use property from context provider.
+export function useGlobalImmer<State extends {}, P extends keyof State>( property: P ):
+	[ State[P], ( f: ( draft: Draft<State[P]> ) => void | State[P] ) => void ];
 
 /**
  * UseImmer for Global State
@@ -16,8 +19,8 @@ export function useGlobalImmer( property ) {
 	const [ val, updateValue ] = useGlobal( property );
 
 	return [ val, useCallback( updater => {
-		updateValue( produce( getGlobal()[ property ], updater ) );
-	}, [ property, updateValue ] ) ];
+		updateValue( produce( val, updater ) );
+	}, [ property, updateValue, val ] ) ];
 }
 
 // Use entire Global State
