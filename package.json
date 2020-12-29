@@ -34,15 +34,14 @@
   },
   "peerDependencies": {
     "immer": "*",
-    "react": "^16.8.0"
-  },
-  "dependencies": {
-     "reactn": "^2.2.4"
+    "react": "^16.8.0",
+    "reactn": "^2.2.4"
   },
   "devDependencies": {
     "@types/react": "^16.8.13",
     "immer": "^4.0.2",
     "microbundle": "^0.11.0",
-    "react": "^16.11.0"
+    "react": "^16.11.0",
+    "reactn": "^2.2.4"
   }
 }
