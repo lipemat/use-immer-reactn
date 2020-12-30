@@ -30,7 +30,7 @@
   },
   "scripts": {
     "build": "microbundle",
-    "prepublish": "rm -rf dist/* && yarn run build"
+    "prepublishOnly": "rm -rf dist/* && yarn run build"
   },
   "peerDependencies": {
     "immer": "*",
@@ -40,7 +40,7 @@
   "devDependencies": {
     "@types/react": "^16.8.13",
     "immer": "^4.0.2",
-    "microbundle": "^0.11.0",
+    "microbundle": "^0.12.3",
     "react": "^16.11.0",
     "reactn": "^2.2.4"
   }
