@@ -5,11 +5,11 @@ import {State} from 'reactn/default';
 import ReactNProvider from 'reactn/types/provider';
 
 // Use property of Global State.
-export function useGlobalImmer<P extends keyof State>( property: P ):
-	[ State[P], ( f: ( draft: Draft<State[P]> ) => void | State[P] ) => void ];
+export function useGlobalImmer<K extends keyof State>( property: K ):
+	[ State[K], ( f: ( draft: Draft<State[K]> ) => void | State[K] ) => void ];
 // Use property from context provider.
-export function useGlobalImmer<State extends {}, P extends keyof State>( property: P ):
-	[ State[P], ( f: ( draft: Draft<State[P]> ) => void | State[P] ) => void ];
+export function useGlobalImmer<State extends {}, K extends keyof State>( property: K ):
+	[ State[K], ( f: ( draft: Draft<State[K]> ) => void | State[K] ) => void ];
 
 /**
  * UseImmer for Global State
