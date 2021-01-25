@@ -27,7 +27,7 @@ export function useGlobalImmer( property ) {
 // Use entire Global State
 export function setGlobalImmer( updater: ( draft: Draft<State> ) => void | State ): Promise<State>;
 // Use property of Global State
-export function setGlobalImmer<S extends keyof State>( property: S, updater: ( draft: Draft<State[S]> ) => void | State[S] ): Promise<State[S]>;
+export function setGlobalImmer<K extends keyof State>( property: K, updater: ( draft: Draft<State[K]> ) => void | State[K] ): Promise<State>;
 
 /**
  * Set Global State with Immer.
@@ -50,7 +50,7 @@ export function setGlobalImmer( propertyOrProducer, producer? ) {
 // Use entire Global State
 export function setGlobalImmerProvider<State>( provider: ReactNProvider<State>, updater: ( draft: Draft<State> ) => void | State ): Promise<State>;
 // Use property of Global State
-export function setGlobalImmerProvider<State, K extends keyof State>( provider: ReactNProvider<State>, property: K, updater: ( draft: Draft<State[K]> ) => void | State[K] ): Promise<State[K]>;
+export function setGlobalImmerProvider<State, K extends keyof State>( provider: ReactNProvider<State>, property: K, updater: ( draft: Draft<State[K]> ) => void | State[K] ): Promise<State>;
 
 /**
  * Set Global State with Immer within a custom Provider.
