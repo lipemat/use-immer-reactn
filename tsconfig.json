@@ -1,5 +1,6 @@
 {
   "include": [
+    "examples/global.d.ts",
     "src/**/*"
   ]
 }
