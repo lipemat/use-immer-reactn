@@ -109,6 +109,37 @@ setGlobalImmer( 'title', original => {
 } )
 ```
 
+### `setGlobalImmerProvider`
+
+Use when working with a custom provider created by `createProvider`.
+
+Works very similar to `setGlobalImmer` except it accepts a `Provider` as the first argument.
+
+```js
+import {createProvider} from 'reactn';
+import {setGlobalImmerProvider} from 'use-immer-reactn';
+
+export const Provider = createProvider( {
+	title: {
+		en: 'Hello World'
+	}
+} )
+
+const changeTitleProducer = originalTitle => {
+	originalTitle.en += ' Changed';
+};
+setGlobalImmerProvider( Provider, 'title', changeTitleProducer );
+```
+
+**Simplified**
+
+```js
+setGlobalImmerProvider( Provider, 'title', title => {
+    title.en += ' Changed';
+} )
+```
+
+
 ## TypeScript Support
 
 Use Immer ReactN supports TypeScript out of the box! It is written entirely in TypeScript. This gives it powerful intellisense, auto-complete, and error-catching abilities.
