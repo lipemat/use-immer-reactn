@@ -4,12 +4,21 @@ import {getGlobal, setGlobal, useGlobal} from 'reactn';
 import {State} from 'reactn/default';
 import ReactNProvider from 'reactn/types/provider';
 
+type Updater<State extends {}, K extends keyof State> = {
+	( updater: (
+		// Pass an updater function which accepts a draft.
+		( draft: Draft<State[K]> ) => void | State[K] ) |
+		// Pass a finished object.
+		State[K]
+	) : void
+}
+
 // Use property of Global State.
 export function useGlobalImmer<K extends keyof State>( property: K ):
-	[ State[K], ( f: ( draft: Draft<State[K]> ) => void | State[K] ) => void ];
+	[ State[K], Updater<State, K>];
 // Use property from context provider.
 export function useGlobalImmer<State extends {}, K extends keyof State>( property: K ):
-	[ State[K], ( f: ( draft: Draft<State[K]> ) => void | State[K] ) => void ];
+	[ State[K], Updater<State, K>];
 
 /**
  * UseImmer for Global State
@@ -20,7 +29,11 @@ export function useGlobalImmer( property ) {
 	const [ val, updateValue ] = useGlobal( property );
 
 	return [ val, useCallback( updater => {
-		updateValue( produce( val, updater ) );
+		if ( typeof updater === 'function' ) {
+			updateValue( produce( val, updater ) );
+		} else {
+			updateValue( updater );
+		}
 	}, [ property, updateValue, val ] ) ];
 }
 
@@ -38,7 +51,7 @@ export function setGlobalImmer<K extends keyof State>( property: K, updater: ( d
  *                                          this argument is the producer
  */
 export function setGlobalImmer( propertyOrProducer, producer? ) {
-	if ( producer as Function ) {
+	if ( typeof producer === 'function' ) {
 		return setGlobal( {
 			[ propertyOrProducer ]: produce( getGlobal()[ propertyOrProducer ], producer )
 		} );
@@ -62,7 +75,7 @@ export function setGlobalImmerProvider<State, K extends keyof State>( provider: 
  *                                          this argument is the producer
  */
 export function setGlobalImmerProvider( provider, propertyOrProducer, producer? ) {
-	if ( producer as Function ) {
+	if ( typeof producer === 'function' ) {
 		return provider.setGlobal( {
 			[ propertyOrProducer ]: produce( provider.getGlobal()[ propertyOrProducer ], producer )
 		} );
