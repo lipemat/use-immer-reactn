@@ -66,6 +66,44 @@ export default () => {
 	);
 };
 ```
+
+You may omit the property when calling `useGlobalImmer` to work with the entire state object.
+
+```jsx
+export default () => {
+	const [ state, setState] = useGlobalImmer();
+	return (
+		<>
+			<h1>{state.title.en}</h1>
+			<button onClick={() => setTitle( original => {
+				original.title.en += ' Changed';
+			} )}/>
+		</>
+	);
+};
+```
+
+You may also pass a finished object instead of a callback to the updater function. This allows to externally finish an object and/or receive a draft to a callback from the same `useGlobalImmer` updater.
+
+```jsx
+export default () => {
+	const [ title, setTitle ] = useGlobalImmer( 'title' );
+	return (
+		<>
+			<h1>{title.en}</h1>
+			<button
+				onClick={() => setTitle( {
+                    en : 'changed'
+                })} />
+			<button
+				onClick={() => setTitle( original => {
+					original.en += ' Changed';
+				} )} />
+		</>
+	);
+};
+```
+
 --------------------------
 
 ### `setGlobalImmer`

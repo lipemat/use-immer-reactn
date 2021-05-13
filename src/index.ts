@@ -17,14 +17,12 @@ type Updater<T> = {
 	): void
 }
 
-
 // Use property of Global State.
 export function useGlobalImmer<K extends keyof State>( property: K ):
 	[ State[K], Updater<State[K]>];
 // Use property from context provider.
 export function useGlobalImmer<State extends {}, K extends keyof State>( property: K ):
 	[ State[K], Updater<State[K]>];
-
 // Use entire global state.
 export function useGlobalImmer():
 	[ State, Updater<State> ]
@@ -48,6 +46,7 @@ export function useGlobalImmer( property? ) {
 		}
 	}, [ property, updateValue, val ] ) ];
 }
+
 
 // Set entire Global State.
 export function setGlobalImmer( updater: ( draft: Draft<State> ) => void | State ): Promise<State>;
