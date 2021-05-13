@@ -4,28 +4,40 @@ import {getGlobal, setGlobal, useGlobal} from 'reactn';
 import {State} from 'reactn/default';
 import ReactNProvider from 'reactn/types/provider';
 
-type Updater<State extends {}, K extends keyof State> = {
+/**
+ * Updater callback which supports passing a callback
+ * function which accepts a draft or a finished state object.
+ */
+type Updater<T> = {
 	( updater: (
 		// Pass an updater function which accepts a draft.
-		( draft: Draft<State[K]> ) => void | State[K] ) |
+		( draft: Draft<T> ) => void | T ) |
 		// Pass a finished object.
-		State[K]
-	) : void
+		T
+	): void
 }
+
 
 // Use property of Global State.
 export function useGlobalImmer<K extends keyof State>( property: K ):
-	[ State[K], Updater<State, K>];
+	[ State[K], Updater<State[K]>];
 // Use property from context provider.
 export function useGlobalImmer<State extends {}, K extends keyof State>( property: K ):
-	[ State[K], Updater<State, K>];
+	[ State[K], Updater<State[K]>];
+
+// Use entire global state.
+export function useGlobalImmer():
+	[ State, Updater<State> ]
+// Use entire context provider's state.
+export function useGlobalImmer<State extends {}>():
+	[ State, Updater<State> ]
 
 /**
  * UseImmer for Global State
  *
- * @param {string} property
+ * @param {string|undefined} property
  */
-export function useGlobalImmer( property ) {
+export function useGlobalImmer( property? ) {
 	const [ val, updateValue ] = useGlobal( property );
 
 	return [ val, useCallback( updater => {
@@ -37,9 +49,9 @@ export function useGlobalImmer( property ) {
 	}, [ property, updateValue, val ] ) ];
 }
 
-// Use entire Global State
+// Set entire Global State.
 export function setGlobalImmer( updater: ( draft: Draft<State> ) => void | State ): Promise<State>;
-// Use property of Global State
+// Set property of Global State.
 export function setGlobalImmer<K extends keyof State>( property: K, updater: ( draft: Draft<State[K]> ) => void | State[K] ): Promise<State>;
 
 /**
@@ -60,9 +72,9 @@ export function setGlobalImmer( propertyOrProducer, producer? ) {
 }
 
 
-// Use entire Global State
+// Set entire context provider's state.
 export function setGlobalImmerProvider<State>( provider: ReactNProvider<State>, updater: ( draft: Draft<State> ) => void | State ): Promise<State>;
-// Use property of Global State
+// Set property of context provider's state.
 export function setGlobalImmerProvider<State, K extends keyof State>( provider: ReactNProvider<State>, property: K, updater: ( draft: Draft<State[K]> ) => void | State[K] ): Promise<State>;
 
 /**
