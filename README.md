@@ -1,6 +1,7 @@
 # Use Immer ReactN
 
-[![version](https://img.shields.io/npm/v/use-immer-reactn.svg)](https://www.npmjs.com/package/use-immer-reactn) [![minzipped size](https://img.shields.io/bundlephobia/minzip/use-immer-reactn.svg)](https://www.npmjs.com/package/use-immer-reactn) [![downloads](https://img.shields.io/npm/dt/use-immer-reactn.svg)](https://www.npmjs.com/package/use-immer-reactn)
+[![version](https://img.shields.io/npm/v/use-immer-reactn.svg)](https://www.npmjs.com/package/use-immer-reactn) 
+[![downloads](https://img.shields.io/npm/dt/use-immer-reactn.svg)](https://www.npmjs.com/package/use-immer-reactn)
 
 **React [hook](https://reactjs.org/docs/hooks-intro.html) and helper function for using [Immer](https://github.com/mweststrate/immer) with [ReactN](https://www.npmjs.com/package/reactn).**
 
