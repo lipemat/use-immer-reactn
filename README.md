@@ -83,7 +83,7 @@ export default () => {
 };
 ```
 
-You may also pass a finished object instead of a callback to the updater function. This allows to externally finish an object and/or receive a draft to a callback from the same `useGlobalImmer` updater.
+You may also pass a finished object instead of a callback to the updater function. This allows to externally finish an object and or mutate a draft from the same `useGlobalImmer` updater interchangeably. 
 
 ```jsx
 export default () => {
@@ -91,10 +91,12 @@ export default () => {
 	return (
 		<>
 			<h1>{title.en}</h1>
+        {/** Using a finished object **/}
 			<button
 				onClick={() => setTitle( {
                     en : 'changed'
                 })} />
+        {/** Using a draft mutator callback **/}
 			<button
 				onClick={() => setTitle( draft => {
 					draft.en += ' Changed';
@@ -102,6 +104,8 @@ export default () => {
 		</>
 	);
 };
+```
+
 ```
 
 --------------------------
