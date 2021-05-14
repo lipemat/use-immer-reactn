@@ -59,8 +59,8 @@ export default () => {
 	return (
 		<>
 			<h1>{title.en}</h1>
-			<button onClick={() => setTitle( original => {
-				original.en += ' Changed';
+			<button onClick={() => setTitle( draft => {
+				draft.en += ' Changed';
 			} )}/>
 		</>
 	);
@@ -75,8 +75,8 @@ export default () => {
 	return (
 		<>
 			<h1>{state.title.en}</h1>
-			<button onClick={() => setTitle( original => {
-				original.title.en += ' Changed';
+			<button onClick={() => setTitle( draft => {
+				draft.title.en += ' Changed';
 			} )}/>
 		</>
 	);
@@ -96,8 +96,8 @@ export default () => {
                     en : 'changed'
                 })} />
 			<button
-				onClick={() => setTitle( original => {
-					original.en += ' Changed';
+				onClick={() => setTitle( draft => {
+					draft.en += ' Changed';
 				} )} />
 		</>
 	);
