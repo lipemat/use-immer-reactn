@@ -8,14 +8,12 @@ import ReactNProvider from 'reactn/types/provider';
  * Updater callback which supports passing a callback
  * function which accepts a draft or a finished state object.
  */
-type Updater<T> = {
-	( updater: (
-		// Pass an updater function which accepts a draft.
-		( draft: Draft<T> ) => void | T ) |
-		// Pass a finished object.
-		T
-	): void
-}
+type Updater<T> = ( updater:
+	// Pass an updater function which accepts a draft.
+	( ( draft: Draft<T> ) => void | T ) |
+	// Pass a finished object.
+	T,
+) => void;
 
 // Use property of Global State.
 export function useGlobalImmer<K extends keyof State>( property: K ):

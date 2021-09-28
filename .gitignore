@@ -62,7 +62,6 @@ typings/
 
 dist
 .rts2*
-yarn.lock
 
 
 # PHPStorm files
@@ -73,6 +72,7 @@ yarn.lock
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+.idea/csv-plugin.xml
 .idea/php.xml
 .idea/sshConfigs.xml
 # Generated files
@@ -89,3 +89,4 @@ yarn.lock
 atlassian-ide-plugin.xml
 # Editor-based Rest Client
 .idea/httpRequests
+
