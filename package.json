@@ -1,6 +1,6 @@
 {
   "name": "use-immer-reactn",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "React hook and helper function for using Immer with ReactN",
   "author": "Mat Lipe",
   "license": "MIT",
