@@ -18,7 +18,6 @@
   "keywords": [
     "immer",
     "hooks",
-    "react",
     "reactn"
   ],
   "bugs": {
@@ -35,14 +34,13 @@
   },
   "peerDependencies": {
     "immer": "*",
-    "react": "^16.8.0",
+    "react": "^16.8.0 || ^17.0.1",
     "reactn": "^2.2.4"
   },
   "devDependencies": {
-    "@types/react": "^16.14.15",
     "immer": "^9.0.6",
-    "microbundle": "^0.13.3",
-    "react": "^16.14.0",
+    "microbundle": "^0.14.2",
+    "react": "^17.0.2",
     "reactn": "^2.2.7"
   }
 }
