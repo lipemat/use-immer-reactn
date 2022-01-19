@@ -5,11 +5,11 @@ import {State} from 'reactn/default';
 import ReactNProvider from 'reactn/types/provider';
 
 /**
- * Updater callback which supports passing a callback
- * function which accepts a draft or a finished state object.
+ * Updater callback, which supports passing a callback
+ * function, which accepts a draft or a finished state object.
  */
-type Updater<T> = ( updater:
-	// Pass an updater function which accepts a draft.
+export type GlobalUpdater<T> = ( updater:
+	// Pass an updater function, which accepts a draft.
 	( ( draft: Draft<T> ) => void | T ) |
 	// Pass a finished object.
 	T,
@@ -17,16 +17,16 @@ type Updater<T> = ( updater:
 
 // Use property of Global State.
 export function useGlobalImmer<K extends keyof State>( property: K ):
-	[ State[K], Updater<State[K]>];
+	[ State[K], GlobalUpdater<State[K]>];
 // Use property from context provider.
 export function useGlobalImmer<State extends {}, K extends keyof State>( property: K ):
-	[ State[K], Updater<State[K]>];
+	[ State[K], GlobalUpdater<State[K]>];
 // Use entire global state.
 export function useGlobalImmer():
-	[ State, Updater<State> ]
+	[ State, GlobalUpdater<State> ]
 // Use entire context provider's state.
 export function useGlobalImmer<State extends {}>():
-	[ State, Updater<State> ]
+	[ State, GlobalUpdater<State> ]
 
 /**
  * UseImmer for Global State
