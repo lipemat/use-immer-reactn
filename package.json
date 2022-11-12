@@ -34,7 +34,7 @@
   },
   "peerDependencies": {
     "immer": "*",
-    "react": "^16.8.0 || ^17.0.1",
+    "react": "^16.8.0 || ^17 || ^18",
     "reactn": "^2.2.4"
   },
   "devDependencies": {
