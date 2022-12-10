@@ -28,9 +28,11 @@ Assuming your global state set in ReactN looks like this:
 
 ### `useGlobalImmer`
 
-Works very similar to `useGlobal` in ReactN with the one different being you pass a function (producer) to the "setValue" call instead of a new value.
+Works like `useGlobal` in ReactN with the one different being you pass a function (producer) to the "setValue" call instead of a new value.
 
-The passed function works exactly the same as a "producer" in Immer. Receiving the original value as it's only parameter which may be mutated at will.
+The passed function works the same as a "producer" in Immer. Receiving the original value as it's only parameter, which may be mutated at will.
+
+If the current component is nested below a custom provider, the hook will automatically use the custom provider.
 
 ```jsx harmony
 import {useGlobalImmer} from 'use-immer-reactn';
@@ -150,6 +152,33 @@ setGlobalImmer( 'title', original => {
 } )
 ```
 
+### `useGlobalImmerProvider`
+
+Use when working with a custom provider created by `createProvider` from a component not nested below the provider.
+
+@notice If the current component is nested before the provider, use instead `useGlobalImmer`.
+
+
+```tsx
+type CustomState = {
+	loading: boolean;
+}
+const provider = createProvider<CustomState>( {} );
+
+export default () => {
+	const [ title, setTitle ] = useGlobalImmerProvider<CustomState>( provider, 'title' );
+	return (
+		<>
+			<h1>{title.en}</h1>
+			<button onClick={() => setTitle( draft => {
+				draft.en += ' Changed';
+			} )}/>
+		</>
+	);
+};
+
+```
+
 ### `setGlobalImmerProvider`
 
 Use when working with a custom provider created by `createProvider`.
@@ -188,15 +217,3 @@ Use Immer ReactN supports TypeScript out of the box! It is written entirely in T
 While there is no configuration required to use this package, there is one caveat passed down from [ReactN](https://www.npmjs.com/package/reactn) which requires you to setup a `src/global.d.ts` file to tell TypeScript the shape of your global state.
 
 If you are already using TypeScript with ReactN, odds are good you have already gone through the [steps outlined here](https://www.npmjs.com/package/reactn#typescript-support). If not, you'll likely want to do so.
-
-
-
-
-
-
-
-
-
-
-
-

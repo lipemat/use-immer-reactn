@@ -29,7 +29,10 @@ export function useGlobalImmer<State extends {}>():
 	[ State, GlobalUpdater<State> ]
 
 /**
- * UseImmer for Global State
+ * UseImmer for Global State.
+ *
+ * If the current component is nested under a custom provider,
+ * this hook will automatically use the custom provider.
  *
  * @param {string|undefined} property
  */
@@ -66,6 +69,40 @@ export function setGlobalImmer( propertyOrProducer, producer? ) {
 		} );
 	}
 	return setGlobal( produce( getGlobal(), propertyOrProducer ) );
+}
+
+
+// Use property of context provider's state.
+export function useGlobalImmerProvider<State extends {}, K extends keyof State>( provider: ReactNProvider<State>, property: keyof State ):
+	[ State[K], GlobalUpdater<State[K]> ];
+// Use entire context provider's state.
+export function useGlobalImmerProvider<State extends {}>( provider: ReactNProvider<State> ):
+	[ State, GlobalUpdater<State> ]
+
+/**
+ * UseImmer for Global State from a custom provider the current
+ * component is not nested within.
+ *
+ * @notice Instead, use `useGlobalImmer` if the current component is nested under
+ * the custom provider.
+ *
+ * @see useGlobalImmer
+ *
+ * @since 1.5.0
+ *
+ * @param {ReactNProvider}   provider - Provider created via `createProvider`.
+ * @param {string|undefined} property
+ */
+export function useGlobalImmerProvider( provider, property? ) {
+	const [ val, updateValue ] = provider.useGlobal( property );
+
+	return [ val, useCallback( updater => {
+		if ( 'function' === typeof updater ) {
+			updateValue( produce( val, updater ) );
+		} else {
+			updateValue( updater );
+		}
+	}, [ property, updateValue, val ] ) ];
 }
 
 
