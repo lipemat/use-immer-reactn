@@ -166,7 +166,7 @@ type CustomState = {
 const provider = createProvider<CustomState>( {} );
 
 export default () => {
-	const [ title, setTitle ] = useGlobalImmerProvider<CustomState>( provider, 'title' );
+	const [ title, setTitle ] = useGlobalImmerProvider<CustomState, 'title'>( provider, 'title' );
 	return (
 		<>
 			<h1>{title.en}</h1>
