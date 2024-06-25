@@ -15,6 +15,12 @@ export type GlobalUpdater<T> = ( updater:
 	T,
 ) => void;
 
+/**
+ * Provider Updater callback, which supports passing a callback
+ * which return void or a new state object.
+ */
+export declare type ProviderUpdater<T> = ( draft: Draft<T> ) => void | T;
+
 // Use property of Global State.
 export function useGlobalImmer<K extends keyof State>( property: K ):
 	[ State[K], GlobalUpdater<State[K]>];
@@ -107,9 +113,9 @@ export function useGlobalImmerProvider( provider, property? ) {
 
 
 // Set entire context provider's state.
-export function setGlobalImmerProvider<State>( provider: ReactNProvider<State>, updater: ( draft: Draft<State> ) => void | State ): Promise<State>;
+export function setGlobalImmerProvider<State>( provider: ReactNProvider<State>, updater: ProviderUpdater<State> ): Promise<State>;
 // Set property of context provider's state.
-export function setGlobalImmerProvider<State, K extends keyof State>( provider: ReactNProvider<State>, property: K, updater: ( draft: Draft<State[K]> ) => void | State[K] ): Promise<State>;
+export function setGlobalImmerProvider<State, K extends keyof State>( provider: ReactNProvider<State>, property: K, updater: ProviderUpdater<State[K]> ): Promise<State>;
 
 /**
  * Set Global State with Immer within a custom Provider.
