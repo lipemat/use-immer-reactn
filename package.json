@@ -33,12 +33,12 @@
     "prepublishOnly": "rm -rf dist/* && yarn run build"
   },
   "peerDependencies": {
-    "immer": "*",
+    "immer": "^10",
     "react": "^18",
     "reactn": "^2.2.4"
   },
   "devDependencies": {
-    "immer": "^9.0.6",
+    "immer": "^10.1.1",
     "microbundle": "^0.14.2",
     "react": "^18.3.1",
     "reactn": "^2.2.7"

@@ -1,4 +1,4 @@
-import produce, {Draft} from 'immer';
+import {type Draft, produce} from 'immer';
 import {useCallback} from 'react';
 import {getGlobal, setGlobal, useGlobal} from 'reactn';
 import {State} from 'reactn/default';
